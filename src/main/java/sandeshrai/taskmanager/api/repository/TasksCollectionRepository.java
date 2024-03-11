@@ -3,6 +3,7 @@ package sandeshrai.taskmanager.api.repository;
 import org.springframework.stereotype.Repository;
 import sandeshrai.taskmanager.api.model.Task;
 import sandeshrai.taskmanager.api.model.TaskContent;
+import sandeshrai.taskmanager.api.model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -40,6 +41,20 @@ public class TasksCollectionRepository {
         this.deleteTask(id);
 
         Task newTask = new Task(id, taskContent);
+        tasksList.add(newTask);
+    }
+
+    public void updateTaskStatus(String id, TaskStatus taskStatus) {
+        Task prevTask = getTask(id);
+        this.deleteTask(id);
+
+        TaskContent newTaskContent = new TaskContent(
+                prevTask.taskContent().name(),
+                prevTask.taskContent().description(),
+                taskStatus
+        );
+
+        Task newTask = new Task(id, newTaskContent);
         tasksList.add(newTask);
     }
 

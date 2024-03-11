@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sandeshrai.taskmanager.api.model.Task;
 import sandeshrai.taskmanager.api.model.TaskContent;
+import sandeshrai.taskmanager.api.model.TaskStatus;
 import sandeshrai.taskmanager.api.repository.TasksCollectionRepository;
 
 import java.util.ArrayList;
@@ -46,6 +47,16 @@ public class TasksController {
         }
 
         repository.updateTask(id, taskContent);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PutMapping("/{id}/{status}")
+    public ResponseEntity<Object> updateTask(@PathVariable String id, @PathVariable TaskStatus status) {
+        if (!repository.checkTaskIdExists(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with ID " + id + " not found");
+        }
+
+        repository.updateTaskStatus(id, status);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
