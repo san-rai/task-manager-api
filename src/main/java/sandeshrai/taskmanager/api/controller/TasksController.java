@@ -24,6 +24,15 @@ public class TasksController {
         return repository.getAllTasks();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getTask(@PathVariable String id) {
+        if (!repository.checkTaskIdExists(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with ID " + id + " not found");
+        }
+        Task task = repository.getTask(id);
+        return ResponseEntity.ok(task);
+    }
+
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public void addTask(@RequestBody TaskContent taskContent) {

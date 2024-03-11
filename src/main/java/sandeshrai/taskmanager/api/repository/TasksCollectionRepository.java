@@ -17,6 +17,14 @@ public class TasksCollectionRepository {
         return tasksList;
     }
 
+    public Task getTask(String id) {
+
+        return tasksList.stream()
+                .filter(task -> Objects.equals(task.id(), id))
+                .findFirst()
+                .orElseThrow();
+    }
+
     public void addTask(TaskContent taskContent) {
         String id = UUID.randomUUID().toString();
         Task newTask = new Task(id, taskContent);
