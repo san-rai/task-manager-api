@@ -5,7 +5,9 @@ import sandeshrai.taskmanager.api.model.Task;
 import sandeshrai.taskmanager.api.model.TaskContent;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 public class TasksCollectionRepository {
@@ -20,5 +22,22 @@ public class TasksCollectionRepository {
         Task newTask = new Task(id, taskContent);
 
         tasksList.add(newTask);
+    }
+
+    public boolean checkTaskIdExists(String id) {
+        return (tasksList.stream().anyMatch(task -> Objects.equals(task.id(), id)));
+    }
+
+    public void updateTask(String id, TaskContent taskContent) {
+        this.deleteTask(id);
+
+        Task newTask = new Task(id, taskContent);
+        tasksList.add(newTask);
+    }
+
+    public void deleteTask(String id) {
+        tasksList = (ArrayList<Task>) tasksList.stream()
+                .filter(task -> !Objects.equals(task.id(), id))
+                .collect(Collectors.toList());
     }
 }
