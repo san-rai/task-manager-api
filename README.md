@@ -16,7 +16,8 @@ The Task Manager API provides endpoints to manage tasks including creating, upda
 - Retrieve tasks by ID
 - Update tasks
 - Delete tasks
-- Mark tasks as to-do, in-progress or done
+- Mark status of tasks as to-do, in-progress or done
+- Filter tasks by status
 
 ## API Endpoints
 - `GET /tasks`: Retrieve all tasks.
@@ -24,7 +25,8 @@ The Task Manager API provides endpoints to manage tasks including creating, upda
 - `POST /tasks`: Create a new task.
 - `PUT /tasks/{id}`: Update an existing task.
 - `DELETE /tasks/{id}`: Delete a task by ID.
-- `PUT /tasks/{id}/DONE`: Mark a task as to-do.
-- `PUT /tasks/{id}/IN_PROGRESS`: Set a task as in-progress.
-- `PUT /tasks/{id}/DONE`: Mark a task as done.
+- `PUT /tasks/{id}/DONE`: Mark a task status as to-do.
+- `PUT /tasks/{id}/IN_PROGRESS`: Set a task status as in-progress.
+- `PUT /tasks/{id}/DONE`: Mark a task status as done.
+- `GET /tasks/filter/{status}`: Filter by status.
 

@@ -81,4 +81,9 @@ public class TasksController {
 
         repository.deleteById(id);
     }
+
+    @GetMapping("/filter/{status}")
+    public List<Task> filterByStatus(@PathVariable TaskStatus status) {
+        return repository.filterByStatus(status);
+    }
 }
