@@ -1,4 +1,11 @@
 package sandeshrai.taskmanager.api.model;
 
-public record Task(String id, TaskContent taskContent) {
-}
+import org.springframework.data.annotation.Id;
+
+public record Task(
+        @Id
+        Long id,
+        String name,
+        String description,
+        TaskStatus status
+) { }
