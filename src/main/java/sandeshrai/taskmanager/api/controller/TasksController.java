@@ -27,7 +27,7 @@ public class TasksController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getTask(@PathVariable Long id) {
+    public ResponseEntity<Object> getTaskById(@PathVariable Long id) {
         if (!repository.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task with ID " + id + " not found");
         }
@@ -56,6 +56,7 @@ public class TasksController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateTaskByStatus(@PathVariable Long id, @PathVariable TaskStatus status) {
         Optional<Task> optionalTask = repository.findById(id);
+
         if (optionalTask.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Task with ID " + id + " not found");
         }
