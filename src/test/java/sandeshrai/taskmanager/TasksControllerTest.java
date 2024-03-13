@@ -114,9 +114,7 @@ public class TasksControllerTest {
 
         // Updating task with invalid id
         ResponseStatusException exception = assertThrows(ResponseStatusException.class,
-                ()->{
-                    controller.updateTask(invalidId, updatedTask);
-                });
+                ()-> controller.updateTask(invalidId, updatedTask));
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
         assertEquals("Task with ID 2 not found", exception.getReason());
@@ -148,9 +146,7 @@ public class TasksControllerTest {
 
         // Updating task with invalid id
         ResponseStatusException exception = assertThrows(ResponseStatusException.class,
-                ()->{
-                    controller.updateTask(invalidId, updatedTask);
-                });
+                ()-> controller.updateTask(invalidId, updatedTask));
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
         assertEquals("Task with ID 2 not found", exception.getReason());
@@ -176,9 +172,7 @@ public class TasksControllerTest {
 
         // Deleting task with invalid id
         ResponseStatusException exception = assertThrows(ResponseStatusException.class,
-                ()->{
-                    controller.deleteTask(invalidId);
-                });
+                ()-> controller.deleteTask(invalidId));
 
         assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
         assertEquals("Task with ID 2 not found", exception.getReason());
