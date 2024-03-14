@@ -9,6 +9,7 @@ The Task Manager API provides endpoints to manage tasks including creating, upda
 - Spring Boot 3
 - Java 21
 - Gradle
+- Unit Testing: JUnit 5, Mockito
 
 ## Features
 - Create tasks
